@@ -1,0 +1,140 @@
+paths:
+  /primo_acceuil/login:
+    post:
+      tags:
+        - primo_accueil
+      summary: Connexion aux files d'attentes
+      description: "Connexion aux files d'attentes"
+      operationId: loginAccueil
+      parameters:
+        - $ref: "#/parameters/primo_accueil"
+      responses:
+        '201':
+          description: successful operation
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '503':
+          $ref: '#/responses/AnotherServiceUnavailable'
+  /primo_acceuil/logout:
+    post:
+      tags:
+        - primo_accueil
+      summary: déconnexion aux files d'attentes
+      description: "Déconnexion aux files d'attentes"
+      operationId: logoutAccueil
+      parameters:
+        - $ref: "#/parameters/primo_accueil"
+      responses:
+        '201':
+          description: successful operation
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '503':
+          $ref: '#/responses/AnotherServiceUnavailable'
+  /primo_acceuil/activation_primo:
+    post:
+      tags:
+        - primo_accueil
+      summary: activation_primo
+      description: "activation_primo"
+      operationId: activationPrimo
+      parameters:
+        - $ref: "#/parameters/primo_accueil"
+      responses:
+        '201':
+          description: successful operation
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '503':
+          $ref: '#/responses/AnotherServiceUnavailable'
+  /primo_acceuil/desactivation_primo:
+    post:
+      tags:
+        - primo_accueil
+      summary: desactivation_primo
+      description: "desactivation_primo"
+      operationId: desactivationPrimo
+      parameters:
+        - $ref: "#/parameters/primo_accueil"
+      responses:
+        '201':
+          description: successful operation
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '503':
+          $ref: '#/responses/AnotherServiceUnavailable'
+  /primo_acceuil/activation_accueil_physique:
+    post:
+      tags:
+        - primo_accueil
+      summary: activation_accueil_physique
+      description: "activation_accueil_physique"
+      operationId: activationAccueilPhysique
+      parameters:
+        - $ref: "#/parameters/primo_accueil"
+      responses:
+        '201':
+          description: successful operation
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '503':
+          $ref: '#/responses/AnotherServiceUnavailable'
+  /primo_acceuil/desactivation_accueil_physique:
+    post:
+      tags:
+        - primo_accueil
+      summary: desactivation_accueil_physique
+      description: "desactivation_accueil_physique"
+      operationId: desactivationAccueilPhysique
+      parameters:
+        - $ref: "#/parameters/primo_accueil"
+      responses:
+        '201':
+          description: successful operation
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '503':
+          $ref: '#/responses/AnotherServiceUnavailable'
+definitions:
+  primo_accueil_info:
+  type: object
+  properties:
+    userId:
+      description: user UUID
+      type: string
+      minLength: 1
+    agentId:
+      description: agent ID
+      type: integer
+      format: int64
+    doNotDisturb:
+      description: do not disturb status
+      type: boolean
+    state:
+      description: user state
+      type: string
+      minLength: 1
+    status:
+      description: user state information
+      type: string
+      minLength: 1
+parameters:
+  primo_accueil:
+    name: body
+    in: body
+    description: Login / Logout
+    required: true
+    schema:
+      $ref: '#/definitions/primo_accueil_info'
