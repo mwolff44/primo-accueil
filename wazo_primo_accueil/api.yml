@@ -119,10 +119,14 @@ definitions:
       description: agent ID
       type: integer
       format: int64
-    lineId:
-      description: line ID
-      type: integer
-      format: int64
+    extension:
+      description: user extension
+      type: string
+      minLength: 1
+    context:
+      description: internal context
+      type: string
+      minLength: 1
     doNotDisturb:
       description: do not disturb status
       type: boolean

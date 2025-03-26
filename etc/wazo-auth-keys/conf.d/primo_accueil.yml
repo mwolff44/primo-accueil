@@ -1,8 +1,5 @@
 wazo-calld:
   system_user: www-data
   acl:
-    - 'agentd.login_user_agent'
-    - 'agentd.logoff_agent'
-    - 'agentd.pause_agent_by_number'
-    - 'agentd.unpause_agent_by_number'
+    - 'agentd.agents.#'
     - 'chatd.users.*.presences.update'
