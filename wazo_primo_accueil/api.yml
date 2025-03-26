@@ -1,5 +1,5 @@
 paths:
-  /primo_acceuil/login:
+  /primo_accueil/login:
     post:
       tags:
         - primo_accueil
@@ -17,7 +17,7 @@ paths:
           description: Not found
         '503':
           $ref: '#/responses/AnotherServiceUnavailable'
-  /primo_acceuil/logout:
+  /primo_accueil/logout:
     post:
       tags:
         - primo_accueil
@@ -35,7 +35,7 @@ paths:
           description: Not found
         '503':
           $ref: '#/responses/AnotherServiceUnavailable'
-  /primo_acceuil/activation_primo:
+  /primo_accueil/activation_primo:
     post:
       tags:
         - primo_accueil
@@ -53,7 +53,7 @@ paths:
           description: Not found
         '503':
           $ref: '#/responses/AnotherServiceUnavailable'
-  /primo_acceuil/desactivation_primo:
+  /primo_accueil/desactivation_primo:
     post:
       tags:
         - primo_accueil
@@ -71,7 +71,7 @@ paths:
           description: Not found
         '503':
           $ref: '#/responses/AnotherServiceUnavailable'
-  /primo_acceuil/activation_accueil_physique:
+  /primo_accueil/activation_accueil_physique:
     post:
       tags:
         - primo_accueil
@@ -89,7 +89,7 @@ paths:
           description: Not found
         '503':
           $ref: '#/responses/AnotherServiceUnavailable'
-  /primo_acceuil/desactivation_accueil_physique:
+  /primo_accueil/desactivation_accueil_physique:
     post:
       tags:
         - primo_accueil
