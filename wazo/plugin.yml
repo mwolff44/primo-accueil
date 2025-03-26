@@ -1,4 +1,4 @@
-name: primo_accueil
+name: primo-accueil
 namespace: mwolff44
 version: 0.0.1
 author: Mathias WOLFF
@@ -6,4 +6,4 @@ display_name: PRIMO ACCUEIL
 min_wazo_version: 25.01
 tags:
   - experimental
-homepage: https://github.com/mwolff44/primo_accueil
+homepage: https://github.com/mwolff44/primo-accueil

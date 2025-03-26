@@ -18,11 +18,11 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     package_data={
-        'primo_accueil': ['api.yml'],
+        'wazo_primo_accueil': ['api.yml'],
     },
     entry_points={
         'wazo_calld.plugins': [
-            'koala = primo_accueil.plugin:Plugin'
+            'primo_accueil = wazo_primo_accueil.plugin:Plugin'
         ]
     },
 ),

@@ -5,7 +5,7 @@
 
 ## Installation
 
-    wazo-plugind-cli -c "install git https://github.com/mwolff44/primo_accueil --ref main"
+    wazo-plugind-cli -c "install git https://github.com/mwolff44/primo-accueil --ref main"
 
 ## Usage
 
