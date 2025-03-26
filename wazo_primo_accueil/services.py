@@ -20,7 +20,12 @@ class PrimoAccueilService(object):
         self.chatd.user_presences.update(user_args, tenant_uuid)
 
         # Login the agent
-        success = self.agentd.agents.login_user_agent(params.get('lineId'), tenant_uuid)
+        line_id = params.get('lineId')
+        if line_id is not None:
+            line_id = int(line_id)
+        else:
+            raise ValueError("lineId is required for agent login")
+        success = self.agentd.agents.login_user_agent(line_id=line_id, tenant_uuid=tenant_uuid)
         
         return success
 

@@ -13,6 +13,7 @@ from marshmallow.validate import Length, Range
 class PrimoAccueilSchema(Schema):
     userId = fields.Str(required=True, validate=Length(min=1))
     agentId = fields.Integer(required=True, validate=Range(min=1))
+    lineId = fields.Integer(required=True, validate=Range(min=1))
     doNotDisturb = fields.Boolean(required=True)
     state = fields.Str(required=True, validate=Length(min=1))
     status = fields.Str(required=True, validate=Length(min=1))
