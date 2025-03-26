@@ -14,13 +14,13 @@ class PrimoAccueilService(object):
     def login(self, params, tenant_uuid):
         # Update state and status
         user_args = []
-        user_args['uuid'] = params.get('userID')
+        user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = "Service accueil"
         self.chatd.update(self, user_args, tenant_uuid)
 
         # Login the agent
-        success = self.agentd.login_user_agent(self, params.get('lineID'), tenant_uuid)
+        success = self.agentd.login_user_agent(self, params.get('lineId'), tenant_uuid)
         
         return success
 
@@ -31,27 +31,27 @@ class PrimoAccueilService(object):
         except:
             print("Skill already removed")
         # Unpause the agent
-        agent = self._get_agent(params.get('agentID'))
+        agent = self._get_agent(params.get('agentId'))
         try:
             self.agentd.unpause_agent_by_number(self, agent['number'], tenant_uuid)
         except:
             print("Agent not in pause, continue")
         # Update state and status
         user_args = []
-        user_args['uuid'] = params.get('userID')
+        user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = ""
         self.chatd.update(self, user_args, tenant_uuid)
 
         # Logout the agent
-        success = self.agentd.logoff_agent(self, params.get('agentID'), tenant_uuid)
+        success = self.agentd.logoff_agent(self, params.get('agentId'), tenant_uuid)
 
         return success
     
     def activation_primo(self, params, tenant_uuid):
         # Update status => Primo accueil
         user_args = []
-        user_args['uuid'] = params.get('userID')
+        user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = "Primo accueil"
         self.chatd.update(self, user_args, tenant_uuid)
@@ -63,7 +63,7 @@ class PrimoAccueilService(object):
     def desactivation_primo(self, params, tenant_uuid):
         # Remove status => Primo accueil
         user_args = []
-        user_args['uuid'] = params.get('userID')
+        user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = "Service accueil"
         self.chatd.update(self, user_args, tenant_uuid)
@@ -74,13 +74,13 @@ class PrimoAccueilService(object):
     
     def activation_accueil_physique(self, params, tenant_uuid):
         # Pause the agent
-        agent = self._get_agent(params.get('agentID'))
+        agent = self._get_agent(params.get('agentId'))
         success = self.agentd.pause_agent_by_number(self, agent['number'], tenant_uuid)
         if success:
             # Update status => Accueil physique
             # Update state => DND or unvailable
             user_args = []
-            user_args['uuid'] = params.get('userID')
+            user_args['uuid'] = params.get('userId')
             user_args['state'] = "unavailable" # available / away / unavailable / invisible
             user_args['status'] = "Accueil physique"
             self.chatd.update(self, user_args, tenant_uuid)
@@ -89,13 +89,13 @@ class PrimoAccueilService(object):
     
     def desactivation_accueil_physique(self, params, tenant_uuid):
         # Unpause the agent
-        agent = self._get_agent(params.get('agentID'))
+        agent = self._get_agent(params.get('agentId'))
         success = self.agentd.unpause_agent_by_number(self, agent['number'], tenant_uuid)
         if success:
             # Remove status => Accueil physique
             # Update state => available
             user_args = []
-            user_args['uuid'] = params.get('userID')
+            user_args['uuid'] = params.get('userId')
             user_args['state'] = "available" # available / away / unavailable / invisible
             user_args['status'] = "Primo accueil"
             self.chatd.update(self, user_args, tenant_uuid)
@@ -114,7 +114,7 @@ class PrimoAccueilService(object):
         # update association agent_id with PRIMO_ACCUEIL skills
         # Get skill id
         skill_id = self._find_skill(tenant_uuid)
-        agent_id = params.get('agentID')
+        agent_id = params.get('agentId')
         if skill_id:
             if associate:
                 # add skill to agent

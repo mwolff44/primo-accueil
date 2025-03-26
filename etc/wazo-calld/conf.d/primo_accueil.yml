@@ -1,2 +1,16 @@
 enabled_plugins:
   primo_accueil: true
+
+# wazo-agentd connection settings
+agentd:
+  host: localhost
+  port: 9493
+  prefix: null
+  https: false
+
+# wazo-chatd connection settings
+chatd:
+  host: localhost
+  port: 9304
+  prefix: null
+  https: false
