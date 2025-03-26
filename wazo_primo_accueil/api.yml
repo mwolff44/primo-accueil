@@ -119,6 +119,10 @@ definitions:
       description: agent ID
       type: integer
       format: int64
+    lineId:
+      description: line ID
+      type: integer
+      format: int64
     doNotDisturb:
       description: do not disturb status
       type: boolean

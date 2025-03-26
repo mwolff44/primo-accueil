@@ -13,14 +13,14 @@ class PrimoAccueilService(object):
 
     def login(self, params, tenant_uuid):
         # Update state and status
-        user_args = []
+        user_args = {}
         user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = "Service accueil"
-        self.chatd.update(self, user_args, tenant_uuid)
+        self.chatd.user_presences.update(user_args, tenant_uuid)
 
         # Login the agent
-        success = self.agentd.login_user_agent(self, params.get('lineId'), tenant_uuid)
+        success = self.agentd.agents.login_user_agent(params.get('lineId'), tenant_uuid)
         
         return success
 
@@ -33,7 +33,7 @@ class PrimoAccueilService(object):
         # Unpause the agent
         agent = self._get_agent(params.get('agentId'))
         try:
-            self.agentd.unpause_agent_by_number(self, agent['number'], tenant_uuid)
+            self.agentd.agents.unpause_agent_by_number(agent['number'], tenant_uuid)
         except:
             print("Agent not in pause, continue")
         # Update state and status
@@ -41,10 +41,10 @@ class PrimoAccueilService(object):
         user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = ""
-        self.chatd.update(self, user_args, tenant_uuid)
+        self.chatd.user_presences.update(user_args, tenant_uuid)
 
         # Logout the agent
-        success = self.agentd.logoff_agent(self, params.get('agentId'), tenant_uuid)
+        success = self.agentd.agents.logoff_agent(params.get('agentId'), tenant_uuid)
 
         return success
     
@@ -54,7 +54,7 @@ class PrimoAccueilService(object):
         user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = "Primo accueil"
-        self.chatd.update(self, user_args, tenant_uuid)
+        self.chatd.user_presences.update(user_args, tenant_uuid)
 
         # Add "PRIMO_ACCUEIL" skill to agent
 
@@ -66,7 +66,7 @@ class PrimoAccueilService(object):
         user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = "Service accueil"
-        self.chatd.update(self, user_args, tenant_uuid)
+        self.chatd.user_presences.update(user_args, tenant_uuid)
        
         # Remove "PRIMO_ACCUEIL" skill to agent
 
@@ -75,7 +75,7 @@ class PrimoAccueilService(object):
     def activation_accueil_physique(self, params, tenant_uuid):
         # Pause the agent
         agent = self._get_agent(params.get('agentId'))
-        success = self.agentd.pause_agent_by_number(self, agent['number'], tenant_uuid)
+        success = self.agentd.agents.pause_agent_by_number(agent['number'], tenant_uuid)
         if success:
             # Update status => Accueil physique
             # Update state => DND or unvailable
@@ -83,14 +83,14 @@ class PrimoAccueilService(object):
             user_args['uuid'] = params.get('userId')
             user_args['state'] = "unavailable" # available / away / unavailable / invisible
             user_args['status'] = "Accueil physique"
-            self.chatd.update(self, user_args, tenant_uuid)
+            self.chatd.user_presences.update(user_args, tenant_uuid)
 
         return success
     
     def desactivation_accueil_physique(self, params, tenant_uuid):
         # Unpause the agent
         agent = self._get_agent(params.get('agentId'))
-        success = self.agentd.unpause_agent_by_number(self, agent['number'], tenant_uuid)
+        success = self.agentd.agents.unpause_agent_by_number(agent['number'], tenant_uuid)
         if success:
             # Remove status => Accueil physique
             # Update state => available
@@ -98,7 +98,7 @@ class PrimoAccueilService(object):
             user_args['uuid'] = params.get('userId')
             user_args['state'] = "available" # available / away / unavailable / invisible
             user_args['status'] = "Primo accueil"
-            self.chatd.update(self, user_args, tenant_uuid)
+            self.chatd.user_presences.update(user_args, tenant_uuid)
 
         return success
     
