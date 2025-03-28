@@ -44,7 +44,7 @@ class PrimoAccueilService(object):
         except:
             print("Agent not in pause, continue")
         # Update state and status
-        user_args = []
+        user_args = {}
         user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = ""
@@ -57,7 +57,7 @@ class PrimoAccueilService(object):
     
     def activation_primo(self, params, tenant_uuid):
         # Update status => Primo accueil
-        user_args = []
+        user_args = {}
         user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = "Primo accueil"
@@ -69,7 +69,7 @@ class PrimoAccueilService(object):
     
     def desactivation_primo(self, params, tenant_uuid):
         # Remove status => Primo accueil
-        user_args = []
+        user_args = {}
         user_args['uuid'] = params.get('userId')
         user_args['state'] = "available" # available / away / unavailable / invisible
         user_args['status'] = "Service accueil"
@@ -86,9 +86,9 @@ class PrimoAccueilService(object):
         if success:
             # Update status => Accueil physique
             # Update state => DND or unvailable
-            user_args = []
+            user_args = {}
             user_args['uuid'] = params.get('userId')
-            user_args['state'] = "unavailable" # available / away / unavailable / invisible
+            user_args['state'] = "away" # available / away / unavailable / invisible
             user_args['status'] = "Accueil physique"
             self.chatd.user_presences.update(user_args, tenant_uuid)
 
@@ -101,7 +101,7 @@ class PrimoAccueilService(object):
         if success:
             # Remove status => Accueil physique
             # Update state => available
-            user_args = []
+            user_args = {}
             user_args['uuid'] = params.get('userId')
             user_args['state'] = "available" # available / away / unavailable / invisible
             user_args['status'] = "Primo accueil"
