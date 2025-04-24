@@ -19,7 +19,7 @@ class PrimoAccueilLoginResource(AuthResource):
     def __init__(self, primo_accueil_service):
         self._primo_accueil_service = primo_accueil_service
 
-    #@required_acl('confd.primo_accueil.create')
+    #@required_acl('calld.primo_accueil.create')
     def post(self):
         tenant = Tenant.autodetect()
         request_body = primo_accueil_schema.load(request.get_json(force=True))
@@ -35,7 +35,7 @@ class PrimoAccueilLogoutResource(AuthResource):
     def __init__(self, primo_accueil_service):
         self._primo_accueil_service = primo_accueil_service
 
-    #@required_acl('confd.primo_accueil.create')
+    #@required_acl('calld.primo_accueil.create')
     def post(self):
         tenant = Tenant.autodetect()
         request_body = primo_accueil_schema.load(request.get_json(force=True))
@@ -48,7 +48,7 @@ class PrimoAccueilActivationPrimoResource(AuthResource):
     def __init__(self, primo_accueil_service):
         self._primo_accueil_service = primo_accueil_service
 
-    #@required_acl('confd.primo_accueil.create')
+    #@required_acl('calld.primo_accueil.create')
     def post(self):
         tenant = Tenant.autodetect()
         request_body = primo_accueil_schema.load(request.get_json(force=True))
@@ -64,7 +64,7 @@ class PrimoAccueilDesActivationPrimoResource(AuthResource):
     def __init__(self, primo_accueil_service):
         self._primo_accueil_service = primo_accueil_service
 
-    #@required_acl('confd.primo_accueil.create')
+    #@required_acl('calld.primo_accueil.create')
     def post(self):
         tenant = Tenant.autodetect()
         request_body = primo_accueil_schema.load(request.get_json(force=True))
@@ -77,7 +77,7 @@ class PrimoAccueilActivationAccueilPhysiqueResource(AuthResource):
     def __init__(self, primo_accueil_service):
         self._primo_accueil_service = primo_accueil_service
 
-    #@required_acl('confd.primo_accueil.create')
+    #@required_acl('calld.primo_accueil.create')
     def post(self):
         tenant = Tenant.autodetect()
         request_body = primo_accueil_schema.load(request.get_json(force=True))
@@ -93,7 +93,7 @@ class PrimoAccueilDesActivationAccueilPhysiqueResource(AuthResource):
     def __init__(self, primo_accueil_service):
         self._primo_accueil_service = primo_accueil_service
 
-    #@required_acl('confd.primo_accueil.create')
+    #@required_acl('calld.primo_accueil.create')
     def post(self):
         tenant = Tenant.autodetect()
         request_body = primo_accueil_schema.load(request.get_json(force=True))
