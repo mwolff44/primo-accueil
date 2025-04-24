@@ -137,7 +137,6 @@ definitions:
     status:
       description: user state information
       type: string
-      minLength: 1
 parameters:
   PrimoAccueil:
     name: body
