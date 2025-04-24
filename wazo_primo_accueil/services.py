@@ -23,13 +23,16 @@ class PrimoAccueilService(object):
         agent = int(params.get('agentId'))
         extension = params.get('extension')
         context = params.get('context')
-        success = self.agentd.agents.login_agent(
-            agent_id=agent,
-            extension=extension,
-            context=context,
-            tenant_uuid=tenant_uuid)
-        
-        return success
+        try:
+            self.agentd.agents.login_agent(
+                agent_id=agent,
+                extension=extension,
+                context=context,
+                tenant_uuid=tenant_uuid)
+        except:
+            print("Error during agent login")
+
+        return 'OK'
 
     def logout(self, params, tenant_uuid):
         # Remove skill to agent
@@ -51,9 +54,12 @@ class PrimoAccueilService(object):
         self.chatd.user_presences.update(user_args, tenant_uuid)
 
         # Logout the agent
-        success = self.agentd.agents.logoff_agent(params.get('agentId'), tenant_uuid)
+        try:
+            self.agentd.agents.logoff_agent(params.get('agentId'), tenant_uuid)
+        except:
+            print("Error during agent logout")
 
-        return success
+        return 'OK'
     
     def activation_primo(self, params, tenant_uuid):
         # Update status => Primo accueil
