@@ -17,7 +17,7 @@ class PrimoAccueilSchema(Schema):
     context = fields.Str(required=True, validate=Length(min=1))
     doNotDisturb = fields.Boolean(required=True)
     state = fields.Str(required=True, validate=Length(min=1))
-    status = fields.Str(required=False)
+    status = fields.Str(allow_none=True)
 
     class Meta:
         strict = True
