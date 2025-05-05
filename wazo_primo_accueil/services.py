@@ -71,7 +71,12 @@ class PrimoAccueilService(object):
 
         # Add "PRIMO_ACCUEIL" skill to agent
 
-        return self._agent_and_skill_association(True, params, tenant_uuid)
+        try:
+            self._agent_and_skill_association(True, params, tenant_uuid)
+        except:
+            print("Error during skill dassociation")
+
+        return 'OK'
     
     def desactivation_primo(self, params, tenant_uuid):
         # Remove status => Primo accueil
@@ -83,7 +88,12 @@ class PrimoAccueilService(object):
        
         # Remove "PRIMO_ACCUEIL" skill to agent
 
-        return self._agent_and_skill_association(False, params, tenant_uuid)
+        try:
+            self._agent_and_skill_association(False, params, tenant_uuid)
+        except:
+            print("Error during skill dis-association")
+
+        return 'OK'
     
     def activation_accueil_physique(self, params, tenant_uuid):
         # Pause the agent
@@ -98,7 +108,7 @@ class PrimoAccueilService(object):
             user_args['status'] = "Accueil physique"
             self.chatd.user_presences.update(user_args, tenant_uuid)
 
-        return success
+        return 'OK'
     
     def desactivation_accueil_physique(self, params, tenant_uuid):
         # Unpause the agent
@@ -113,14 +123,15 @@ class PrimoAccueilService(object):
             user_args['status'] = "Primo accueil"
             self.chatd.user_presences.update(user_args, tenant_uuid)
 
-        return success
+        return 'OK'
     
     def _find_skill(self, tenant_uuid):
         # Get skill id based on skill name
         skill_name = "PRIMO_ACCUEIL"
-        skills = self.confd.skills.list(tenant_uuid=tenant_uuid)
+        skills = self.confd.agent_skills.list(tenant_uuid=tenant_uuid)
         for skill in skills['items']:
-            if str(skill['label']) == skill_name:
+            print(skill)
+            if str(skill['name']) == skill_name:
                 return skill['id']
             
     def _agent_and_skill_association(self, associate, params, tenant_uuid):

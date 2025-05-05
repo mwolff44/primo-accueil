@@ -1,6 +1,6 @@
 name: primo-accueil
 namespace: mwolff44
-version: 0.0.1
+version: 1.0.0
 author: Mathias WOLFF
 display_name: PRIMO ACCUEIL
 min_wazo_version: 25.01
