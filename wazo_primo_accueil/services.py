@@ -69,6 +69,13 @@ class PrimoAccueilService(object):
         user_args['status'] = "Primo accueil"
         self.chatd.user_presences.update(user_args, tenant_uuid)
 
+        # Be sure that agent is not in pause
+        agent = self._get_agent(params.get('agentId'))
+        try:
+            self.agentd.agents.unpause_agent_by_number(agent['number'], tenant_uuid)
+        except:
+            print("Error unpause agent")
+
         # Add "PRIMO_ACCUEIL" skill to agent
 
         try:
